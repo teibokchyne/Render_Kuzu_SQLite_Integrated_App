@@ -34,6 +34,9 @@ Pillow>=11.0.0
 # Kuzu
 kuzu>=0.11.2
 
+# Dotenv
+python-dotenv>=1.1.1
+
 # Additional Dependencies
 # These are required by the packages above but not directly imported
 Werkzeug==3.1.3
