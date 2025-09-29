@@ -1,0 +1,220 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard - Family Tree{% endblock %}
+
+{% block content %}
+
+<!-- Main Dashboard Content -->
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="fw-bold text-dark mb-3">
+                <i class="fas fa-cogs me-2 text-primary"></i>Administrative Actions
+            </h2>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- User Management Card -->
+        <div class="col-lg-6 col-md-6">
+            <div class="card h-100 border-0 shadow-sm dashboard-card">
+                <div class="card-body p-4 d-flex flex-column">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-primary bg-opacity-10 rounded-3 p-3 me-3">
+                            <i class="fas fa-users text-primary fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title fw-bold mb-1">User Management</h5>
+                            <small class="text-muted">Manage Users</small>
+                        </div>
+                    </div>
+                    <p class="card-text text-muted mb-4 flex-grow-1">
+                        View, edit, and manage all registered users in the Family Tree application. 
+                        Monitor user activity and account status.
+                    </p>
+                    <a href="{{ url_for('admin.display_users') }}" class="btn btn-primary rounded-pill fw-semibold">
+                        <i class="fas fa-users-cog me-2"></i>Manage Users
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Analytics Card -->
+        <div class="col-lg-6 col-md-6">
+            <div class="card h-100 border-0 shadow-sm dashboard-card">
+                <div class="card-body p-4 d-flex flex-column">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-success bg-opacity-10 rounded-3 p-3 me-3">
+                            <i class="fas fa-chart-bar text-success fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title fw-bold mb-1">System Analytics</h5>
+                            <small class="text-muted">View Reports</small>
+                        </div>
+                    </div>
+                    <p class="card-text text-muted mb-4 flex-grow-1">
+                        Access detailed analytics and reports about user activity, 
+                        system performance, and application usage statistics.
+                    </p>
+                    <a href="#" class="btn btn-success rounded-pill fw-semibold">
+                        <i class="fas fa-chart-line me-2"></i>View Analytics
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Database Management Card -->
+        <div class="col-lg-6 col-md-6">
+            <div class="card h-100 border-0 shadow-sm dashboard-card">
+                <div class="card-body p-4 d-flex flex-column">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-info bg-opacity-10 rounded-3 p-3 me-3">
+                            <i class="fas fa-database text-info fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title fw-bold mb-1">Database Management</h5>
+                            <small class="text-muted">System Maintenance</small>
+                        </div>
+                    </div>
+                    <p class="card-text text-muted mb-4 flex-grow-1">
+                        Perform database maintenance tasks, backups, and system health checks 
+                        to ensure optimal application performance.
+                    </p>
+                    <a href="#" class="btn btn-info rounded-pill fw-semibold">
+                        <i class="fas fa-tools me-2"></i>Database Tools
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Security & Logs Card -->
+        <div class="col-lg-6 col-md-6">
+            <div class="card h-100 border-0 shadow-sm dashboard-card">
+                <div class="card-body p-4 d-flex flex-column">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-warning bg-opacity-10 rounded-3 p-3 me-3">
+                            <i class="fas fa-shield-alt text-warning fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title fw-bold mb-1">Security & Logs</h5>
+                            <small class="text-muted">Monitor Security</small>
+                        </div>
+                    </div>
+                    <p class="card-text text-muted mb-4 flex-grow-1">
+                        Monitor security events, view system logs, and manage access controls 
+                        to maintain application security and integrity.
+                    </p>
+                    <a href="#" class="btn btn-warning rounded-pill fw-semibold">
+                        <i class="fas fa-eye me-2"></i>View Logs
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Application Settings Card -->
+        <div class="col-lg-6 col-md-6">
+            <div class="card h-100 border-0 shadow-sm dashboard-card">
+                <div class="card-body p-4 d-flex flex-column">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-danger bg-opacity-10 rounded-3 p-3 me-3">
+                            <i class="fas fa-cog text-danger fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title fw-bold mb-1">Application Settings</h5>
+                            <small class="text-muted">Configure System</small>
+                        </div>
+                    </div>
+                    <p class="card-text text-muted mb-4 flex-grow-1">
+                        Configure application settings, manage feature flags, and customize 
+                        system behavior to meet organizational requirements.
+                    </p>
+                    <a href="#" class="btn btn-danger rounded-pill fw-semibold">
+                        <i class="fas fa-sliders-h me-2"></i>Settings
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Support & Help Card -->
+        <div class="col-lg-6 col-md-6">
+            <div class="card h-100 border-0 shadow-sm dashboard-card">
+                <div class="card-body p-4 d-flex flex-column">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-gradient-primary bg-opacity-10 rounded-3 p-3 me-3">
+                            <i class="fas fa-life-ring text-primary fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title fw-bold mb-1">Support & Help</h5>
+                            <small class="text-muted">Get Assistance</small>
+                        </div>
+                    </div>
+                    <p class="card-text text-muted mb-4 flex-grow-1">
+                        Access documentation, contact support, and find resources to help 
+                        with administrative tasks and system management.
+                    </p>
+                    <a href="#" class="btn btn-primary rounded-pill fw-semibold">
+                        <i class="fas fa-question-circle me-2"></i>Get Help
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity Section -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <h2 class="fw-bold text-dark mb-4">
+                <i class="fas fa-clock me-2 text-primary"></i>Recent Activity
+            </h2>
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <div class="text-center py-5">
+                        <i class="fas fa-history text-muted fs-1 mb-3"></i>
+                        <h5 class="text-muted">No recent activity</h5>
+                        <p class="text-muted mb-0">System activity will appear here as users interact with the application</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Custom Dashboard Styles -->
+<style>
+.dashboard-card {
+    transition: all 0.3s ease;
+    border-radius: 1rem;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.card-body .btn {
+    transition: all 0.3s ease;
+}
+
+.card-body .btn:hover {
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .display-5 {
+        font-size: 2rem;
+    }
+
+    .lead {
+        font-size: 1rem;
+    }
+
+    .dashboard-card .card-body {
+        padding: 1.5rem !important;
+    }
+}
+</style>
+{% endblock %}

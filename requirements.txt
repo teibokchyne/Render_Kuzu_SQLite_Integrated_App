@@ -1,0 +1,45 @@
+# JustEat Application Requirements
+# Generated based on actual imports in the codebase
+
+# Gunicorn
+gunicorn==23.0.0
+
+# Core Flask Framework
+Flask==3.1.2
+flask-sqlalchemy==3.1.1
+flask-bcrypt==1.0.1
+flask-login==0.6.3
+flask-migrate==4.1.0
+flask-wtf==1.2.2
+
+# Database and ORM
+SQLAlchemy==2.0.43
+
+# Form Handling and Validation
+WTForms==3.2.1
+
+# Environment Configuration
+python-dotenv==1.1.1
+
+# Testing Framework
+pytest==8.4.2
+pytest-flask==1.3.0
+
+# PostgreSQL Driver
+psycopg2-binary==2.9.10
+
+# Pillow
+Pillow>=11.0.0
+
+# Kuzu
+kuzu>=0.11.2
+
+# Additional Dependencies
+# These are required by the packages above but not directly imported
+Werkzeug==3.1.3
+Jinja2==3.1.6
+MarkupSafe==3.0.2
+itsdangerous==2.2.0
+click==8.2.1
+blinker==1.9.0
+email-validator==2.3.0

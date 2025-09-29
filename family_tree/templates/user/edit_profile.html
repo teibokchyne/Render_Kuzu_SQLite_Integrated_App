@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Profile - Family Tree{% endblock %}
+
+{% block content %}
+<!-- Main Content -->
+<div class="container mt-5">
+    <div class="row">
+        <!-- Profile Picture Section -->
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-header bg-white border-0 py-4">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-primary bg-opacity-10 rounded-3 p-3 me-3">
+                            <i class="fas fa-user-circle text-primary fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title fw-bold mb-1">Profile Picture</h5>
+                            <small class="text-muted">Your current profile image</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body p-4 text-center">
+                    <div class="mb-4">
+                        {% if profile_image_url %}
+                            <img class="rounded-circle shadow-sm" src="{{ profile_image_url }}" alt="profile picture" style="width: 150px; height: 150px; object-fit: cover;">
+                        {% else %}  
+                            <img class="rounded-circle shadow-sm" src="{{ url_for('static', filename='profile_pictures/default.jpg') }}" alt="default profile picture" style="width: 150px; height: 150px; object-fit: cover;">
+                        {% endif %}
+                    </div>
+                    <p class="text-muted mb-0">
+                        <i class="fas fa-info-circle me-1"></i>
+                        Profile picture management coming soon
+                    </p>
+                </div>
+            </div>
+
+            <!-- User Info Card -->
+            <div class="card border-0 shadow-sm mt-4 rounded-4">
+                <div class="card-header bg-white border-0 py-4">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-info bg-opacity-10 rounded-3 p-3 me-3">
+                            <i class="fas fa-info-circle text-info fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title fw-bold mb-1">Account Info</h5>
+                            <small class="text-muted">Your account details</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body p-4">
+                    <div class="user-info">
+                        <div class="d-flex align-items-start mb-3">
+                            <i class="fas fa-user text-primary me-3 mt-1"></i>
+                            <div>
+                                <strong class="text-dark">Username:</strong>
+                                <div class="text-muted mt-1">{{ user.username }}</div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-envelope text-primary me-3 mt-1"></i>
+                            <div>
+                                <strong class="text-dark">Email:</strong>
+                                <div class="text-muted mt-1">{{ user.email }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Form -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-lg rounded-4">
+                <div class="card-header bg-white border-0 py-4">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-warning bg-opacity-10 rounded-3 p-3 me-3">
+                            <i class="fas fa-edit text-warning fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title fw-bold mb-1">Edit Profile Information</h5>
+                            <small class="text-muted">Update your personal details below</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body p-4">
+                    <form method="POST" action="" novalidate>
+                        {{ form.hidden_tag() }}
+
+                        <!-- Name Fields -->
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    {{ form.first_name(class="form-control form-control-lg", placeholder="First Name", id="first_name") }}
+                                    {{ form.first_name.label(class="form-label", for="first_name") }}
+                                    <div class="form-text">
+                                        <i class="fas fa-user me-1"></i>Your first name
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    {{ form.middle_name(class="form-control form-control-lg", placeholder="Middle Name", id="middle_name") }}
+                                    {{ form.middle_name.label(class="form-label", for="middle_name") }}
+                                    <div class="form-text">
+                                        <i class="fas fa-user me-1"></i>Middle name (optional)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    {{ form.last_name(class="form-control form-control-lg", placeholder="Last Name", id="last_name") }}
+                                    {{ form.last_name.label(class="form-label", for="last_name") }}
+                                    <div class="form-text">
+                                        <i class="fas fa-user me-1"></i>Your last name
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gender Selection -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    {{ form.gender(class="form-select form-select-lg", id="gender") }}
+                                    {{ form.gender.label(class="form-label", for="gender") }}
+                                    <div class="form-text">
+                                        <i class="fas fa-venus-mars me-1"></i>Select your gender
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-warning btn-lg w-100 rounded-pill fw-semibold">
+                                    <i class="fas fa-save me-2"></i>Update Profile
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="{{ url_for('user.display_profile') }}" class="btn btn-outline-secondary btn-lg w-100 rounded-pill fw-semibold">
+                                    <i class="fas fa-times me-2"></i>Cancel
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Help Section -->
+            <div class="card border-0 shadow-sm mt-4 rounded-4">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-start">
+                        <div class="bg-info bg-opacity-10 rounded-3 p-2 me-3">
+                            <i class="fas fa-lightbulb text-info"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-2">Profile Tips</h6>
+                            <ul class="list-unstyled mb-0 small text-muted">
+                                <li class="mb-1">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Use your full legal name for official family records
+                                </li>
+                                <li class="mb-1">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Middle name is optional but helps distinguish family members
+                                </li>
+                                <li class="mb-0">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Keep your profile information accurate and up-to-date
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

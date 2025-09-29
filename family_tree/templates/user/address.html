@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block title %}Addresses - Family Tree{% endblock %}
+
+{% block content %}
+
+<!-- Main Content -->
+<div class="container">
+    {% if addresses %}
+        <!-- Address Cards -->
+        <div class="row g-4">
+            {% for address in addresses %}
+                <div class="col-lg-6 col-md-12">
+                    <div class="card border-0 shadow-sm h-100 address-card">
+                        <div class="card-header bg-white border-0 py-3">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-{{ 'primary' if address.is_permanent else 'info' }} bg-opacity-10 rounded-3 p-2 me-3">
+                                        <i class="fas fa-{{ 'home' if address.is_permanent else 'building' }} text-{{ 'primary' if address.is_permanent else 'info' }}"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="fw-bold mb-1 text-{{ 'primary' if address.is_permanent else 'info' }}">
+                                            {{ 'Permanent Address' if address.is_permanent else 'Current Address' }}
+                                        </h6>
+                                        <small class="text-muted">
+                                            <i class="fas fa-map-marker-alt me-1"></i>Location Details
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="dropdown">
+                                    <button class="btn btn-outline-secondary btn-sm rounded-pill" type="button" data-bs-toggle="dropdown">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li>
+                                            <a class="dropdown-item" href="{{ url_for('user.edit_address', address_id=address.id) }}">
+                                                <i class="fas fa-edit me-2 text-primary"></i>Edit Address
+                                            </a>
+                                        </li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <a class="dropdown-item text-danger" href="{{ url_for('user.display_address', address_id=address.id) }}">
+                                                <i class="fas fa-trash me-2"></i>Delete Address
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-body p-4">
+                            <div class="address-details">
+                                <div class="mb-3">
+                                    <div class="d-flex align-items-start">
+                                        <i class="fas fa-map-marker-alt text-muted me-3 mt-1"></i>
+                                        <div>
+                                            <div class="fw-semibold">{{ address.first_line }}</div>
+                                            {% if address.second_line %}
+                                                <div class="text-muted">{{ address.second_line }}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                {% if address.landmark %}
+                                    <div class="mb-3">
+                                        <div class="d-flex align-items-start">
+                                            <i class="fas fa-map-pin text-muted me-3 mt-1"></i>
+                                            <div>
+                                                <small class="text-muted">Landmark</small>
+                                                <div class="fw-semibold">{{ address.landmark }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                
+                                <div class="mb-3">
+                                    <div class="d-flex align-items-start">
+                                        <i class="fas fa-globe text-muted me-3 mt-1"></i>
+                                        <div>
+                                            <small class="text-muted">Location</small>
+                                            <div class="fw-semibold">
+                                                {{ address.state }}, {{ address.country }} - {{ address.pin_code }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-footer bg-light border-0 py-3">
+                            <div class="d-flex gap-2">
+                                <a href="{{ url_for('user.edit_address', address_id=address.id) }}" class="btn btn-primary btn-sm rounded-pill flex-fill">
+                                    <i class="fas fa-edit me-1"></i>Edit
+                                </a>
+                                <a href="{{ url_for('user.display_address', address_id=address.id) }}" class="btn btn-outline-danger btn-sm rounded-pill flex-fill">
+                                    <i class="fas fa-trash me-1"></i>Delete
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if addresses|length < 2 %}
+      <div class="card-body py-5">
+        <a href="{{ url_for('user.add_address') }}" class="btn btn-primary btn-lg rounded-pill">
+            <i class="fas fa-plus me-2"></i>Add Another Address
+        </a>
+      </div>
+    {% endif %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Relative - Family Tree{% endblock %}
+
+{% block content %}
+
+<!-- Main Form Content -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <div class="card border-0 shadow-lg rounded-4">
+                <div class="card-header bg-white border-0 py-4">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-primary bg-opacity-10 rounded-3 p-3 me-3">
+                            <i class="fas fa-users text-primary fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title fw-bold mb-1">Family Connection</h5>
+                            <small class="text-muted">Select a family member and define your relationship</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-body p-4">
+                    <form method="POST" action="" novalidate>
+                        {{ form.hidden_tag() }}
+                        
+                        <!-- Relative Selection -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    {{ form.relative_user_id(class="form-select form-select-lg selectpicker", data_live_search="true", id="relative_user_id") }}
+                                    {{ form.relative_user_id.label(class="form-label", for="relative_user_id") }}
+                                    <div class="form-text">
+                                        <i class="fas fa-search me-1"></i>Search and select a family member from the list
+                                    </div>
+                                    {% for error in form.relative_user_id.errors %}
+                                        <div class="text-danger small mt-1">
+                                            <i class="fas fa-exclamation-circle me-1"></i>{{ error }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Relationship Type -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    {{ form.relation_type(class="form-select form-select-lg", id="relation_type") }}
+                                    {{ form.relation_type.label(class="form-label", for="relation_type") }}
+                                    <div class="form-text">
+                                        <i class="fas fa-heart me-1"></i>Define how this person is related to you
+                                    </div>
+                                    {% for error in form.relation_type.errors %}
+                                        <div class="text-danger small mt-1">
+                                            <i class="fas fa-exclamation-circle me-1"></i>{{ error }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                {{ form.submit(class="btn btn-primary btn-lg w-100 rounded-pill fw-semibold") }}
+                            </div>
+                            <div class="col-md-6">
+                                <a href="{{ url_for('user.display_relatives') }}" class="btn btn-outline-secondary btn-lg w-100 rounded-pill fw-semibold">
+                                    <i class="fas fa-times me-2"></i>Back to Relatives
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Help Section -->
+            <div class="card border-0 shadow-sm mt-4 rounded-4">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-start">
+                        <div class="bg-info bg-opacity-10 rounded-3 p-2 me-3">
+                            <i class="fas fa-lightbulb text-info"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-2">Tips for Adding Relatives</h6>
+                            <ul class="list-unstyled mb-0 small text-muted">
+                                <li class="mb-1">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Search for family members by name in the dropdown
+                                </li>
+                                <li class="mb-1">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Select the correct relationship type for accurate family tree
+                                </li>
+                                <li class="mb-1">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Both users must be registered in the system
+                                </li>
+                                <li class="mb-0">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    You can add multiple relatives to build your family network
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Relationship Types Information -->
+            <div class="row mt-4 g-3">
+                <div class="col-md-4">
+                    <div class="card border-0 bg-primary bg-opacity-10 h-100">
+                        <div class="card-body text-center p-3">
+                            <i class="fas fa-male text-primary fs-3 mb-2"></i>
+                            <h6 class="fw-bold text-primary mb-1">Parents</h6>
+                            <small class="text-muted">Father, Mother</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 bg-success bg-opacity-10 h-100">
+                        <div class="card-body text-center p-3">
+                            <i class="fas fa-child text-success fs-3 mb-2"></i>
+                            <h6 class="fw-bold text-success mb-1">Children</h6>
+                            <small class="text-muted">Son, Daughter</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 bg-warning bg-opacity-10 h-100">
+                        <div class="card-body text-center p-3">
+                            <i class="fas fa-heart text-warning fs-3 mb-2"></i>
+                            <h6 class="fw-bold text-warning mb-1">Spouse</h6>
+                            <small class="text-muted">Husband, Wife</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+	<h2 class="mb-4">Important Dates</h2>
+	{% if important_dates and important_dates|length > 0 %}
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Type</th>
+					<th>Date</th>
+          <th>Edit</th>
+          <th>Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for date in important_dates %}
+				<tr>
+					<td>{{ date.date_type.value.title() }}</td>
+					<td>{{ date.date.strftime('%Y-%m-%d') }}</td>
+          <td>
+            <a href="{{ url_for('user.edit_important_date', date_id=date.id) }}" class="btn btn-primary">Edit</a>
+          </td>
+          <td>
+            <form method="POST" action="{{ url_for('user.delete_important_date', date_id=date.id) }}">
+              <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+            </form>
+          </td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+		<div class="alert alert-info">No important dates found.</div>
+	{% endif %}
+    <a href="{{ url_for('user.add_important_date') }}" class="btn btn-primary mt-3">Add Important Date</a>
+	<a href="{{ url_for('user.dashboard') }}" class="btn btn-secondary mt-3">Back to Dashboard</a>
+</div>
+{% endblock %}

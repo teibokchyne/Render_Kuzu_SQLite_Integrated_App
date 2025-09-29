@@ -1,0 +1,11 @@
+kuzu_env/
+logs/
+__pycache__/
+.env
+.DS_Store
+.vscode/
+.idea/
+.pytest_cache/
+.coverage
+.coverage.*
+.coverage.*

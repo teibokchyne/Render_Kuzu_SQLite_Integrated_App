@@ -1,0 +1,1 @@
+start cmd /k "cd /d D:\Records2\Coding\Projects\Render_Kuzu_SQLite_Integrated_App && kuzu_env\Scripts\activate.bat"

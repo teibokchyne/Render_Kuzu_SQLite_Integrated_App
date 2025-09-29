@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Address - Family Tree{% endblock %}
+
+{% block content %}
+<!-- Main Content -->
+<div class="container">
+    {% if address %}
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <!-- Warning Alert -->
+                <div class="alert alert-danger border-0 shadow-sm rounded-4 mb-4" role="alert">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-danger bg-opacity-20 rounded-3 p-2 me-3">
+                            <i class="fas fa-exclamation-triangle text-danger fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="alert-heading fw-bold mb-1">Confirm Deletion</h5>
+                            <p class="mb-0">Are you sure you want to delete this address? This action cannot be undone.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Address Details Card -->
+                <div class="card border-0 shadow-lg rounded-4 mb-4">
+                    <div class="card-header bg-white border-0 py-4">
+                        <div class="d-flex align-items-center">
+                            <div class="bg-{{ 'primary' if address.is_permanent else 'info' }} bg-opacity-10 rounded-3 p-3 me-3">
+                                <i class="fas fa-{{ 'home' if address.is_permanent else 'building' }} text-{{ 'primary' if address.is_permanent else 'info' }} fs-4"></i>
+                            </div>
+                            <div>
+                                <h5 class="card-title fw-bold mb-1 text-{{ 'primary' if address.is_permanent else 'info' }}">
+                                    {{ 'Permanent Address' if address.is_permanent else 'Current Address' }}
+                                </h5>
+                                <small class="text-muted">
+                                    <i class="fas fa-map-marker-alt me-1"></i>Address Details
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-body p-4">
+                        <div class="row g-4">
+                            <!-- Address Information -->
+                            <div class="col-md-6">
+                                <div class="address-detail-item">
+                                    <div class="d-flex align-items-start">
+                                        <i class="fas fa-map-marker-alt text-muted me-3 mt-1"></i>
+                                        <div>
+                                            <small class="text-muted">Address</small>
+                                            <div class="fw-semibold">{{ address.first_line }}</div>
+                                            {% if address.second_line %}
+                                                <div class="text-muted">{{ address.second_line }}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="address-detail-item">
+                                    <div class="d-flex align-items-start">
+                                        <i class="fas fa-map-pin text-muted me-3 mt-1"></i>
+                                        <div>
+                                            <small class="text-muted">Landmark</small>
+                                            <div class="fw-semibold">{{ address.landmark or 'Not specified' }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="address-detail-item">
+                                    <div class="d-flex align-items-start">
+                                        <i class="fas fa-map text-muted me-3 mt-1"></i>
+                                        <div>
+                                            <small class="text-muted">State</small>
+                                            <div class="fw-semibold">{{ address.state }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="address-detail-item">
+                                    <div class="d-flex align-items-start">
+                                        <i class="fas fa-globe text-muted me-3 mt-1"></i>
+                                        <div>
+                                            <small class="text-muted">Country</small>
+                                            <div class="fw-semibold">{{ address.country }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="address-detail-item">
+                                    <div class="d-flex align-items-start">
+                                        <i class="fas fa-mail-bulk text-muted me-3 mt-1"></i>
+                                        <div>
+                                            <small class="text-muted">Pin Code</small>
+                                            <div class="fw-semibold">{{ address.pin_code }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-body p-4">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <a href="{{ url_for('user.address') }}" class="btn btn-outline-secondary btn-lg w-100 rounded-pill fw-semibold">
+                                    <i class="fas fa-arrow-left me-2"></i>Cancel & Go Back
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-danger btn-lg w-100 rounded-pill fw-semibold" 
+                                        data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
+                                    <i class="fas fa-trash me-2"></i>Delete Address
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete Confirmation Modal -->
+        <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow-lg rounded-4">
+                    <div class="modal-header border-0 pb-0">
+                        <div class="d-flex align-items-center">
+                            <div class="bg-danger bg-opacity-20 rounded-3 p-2 me-3">
+                                <i class="fas fa-exclamation-triangle text-danger fs-4"></i>
+                            </div>
+                            <div>
+                                <h5 class="modal-title fw-bold" id="deleteConfirmModalLabel">Final Confirmation</h5>
+                                <small class="text-muted">This action cannot be undone</small>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body py-4">
+                        <p class="mb-3">Are you absolutely sure you want to delete this address?</p>
+                        <div class="bg-light rounded-3 p-3 mb-3">
+                            <small class="text-muted">Address to be deleted:</small>
+                            <div class="fw-semibold">{{ address.first_line }}{% if address.second_line %}, {{ address.second_line }}{% endif %}</div>
+                            <div class="text-muted">{{ address.state }}, {{ address.country }} - {{ address.pin_code }}</div>
+                        </div>
+                        <div class="alert alert-warning border-0 mb-0">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <strong>Warning:</strong> This action will permanently remove the address from your profile.
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0 pt-0">
+                        <button type="button" class="btn btn-outline-secondary rounded-pill" data-bs-dismiss="modal">
+                            <i class="fas fa-times me-2"></i>Cancel
+                        </button>
+                        <form method="POST" action="{{ url_for('user.delete_address', address_id=address.id) }}" class="d-inline">
+                            <button type="submit" class="btn btn-danger rounded-pill">
+                                <i class="fas fa-trash me-2"></i>Yes, Delete Address
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+        <!-- Address Not Found State -->
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="card border-0 shadow-sm text-center rounded-4">
+                    <div class="card-body py-5">
+                        <div class="mb-4">
+                            <i class="fas fa-exclamation-circle text-danger" style="font-size: 4rem;"></i>
+                        </div>
+                        <h4 class="fw-bold text-danger mb-3">Address Not Found</h4>
+                        <p class="text-muted mb-4">
+                            The address you are trying to delete does not exist or has already been removed.
+                        </p>
+                        <a href="{{ url_for('user.address') }}" class="btn btn-primary btn-lg rounded-pill">
+                            <i class="fas fa-arrow-left me-2"></i>Back to Addresses
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}

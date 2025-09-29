@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Important Date - Family Tree{% endblock %}
+
+{% block content %}
+<!-- Main Content -->
+<div class="container mt-5">
+    <div class="row">
+        <!-- Edit Form -->
+        <div class="col-lg-8 mx-auto">
+            <div class="card border-0 shadow-lg rounded-4">
+                <div class="card-header bg-white border-0 py-4">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-warning bg-opacity-10 rounded-3 p-3 me-3">
+                            <i class="fas fa-edit text-warning fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title fw-bold mb-1">Edit Important Date</h5>
+                            <small class="text-muted">Update your important date information</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body p-4">
+                    <form method="POST" action="" novalidate>
+                        {{ form.hidden_tag() }}
+
+                        <!-- Date Type Selection -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    {{ form.date_type(class="form-select form-select-lg", id="date_type") }}
+                                    {{ form.date_type.label(class="form-label", for="date_type") }}
+                                    <div class="form-text">
+                                        <i class="fas fa-tag me-1"></i>Choose the type of important date
+                                    </div>
+                                    {% for error in form.date_type.errors %}
+                                        <div class="text-danger small mt-1">
+                                            <i class="fas fa-exclamation-circle me-1"></i>{{ error }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Date Input -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    {{ form.date(class="form-control form-control-lg", placeholder="YYYY-MM-DD", id="date", type="date") }}
+                                    {{ form.date.label(class="form-label", for="date") }}
+                                    <div class="form-text">
+                                        <i class="fas fa-calendar me-1"></i>Select the date of the event
+                                    </div>
+                                    {% for error in form.date.errors %}
+                                        <div class="text-danger small mt-1">
+                                            <i class="fas fa-exclamation-circle me-1"></i>{{ error }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-warning btn-lg w-100 rounded-pill fw-semibold">
+                                    <i class="fas fa-save me-2"></i>Update Date
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="{{ url_for('user.display_important_dates') }}" class="btn btn-outline-secondary btn-lg w-100 rounded-pill fw-semibold">
+                                    <i class="fas fa-times me-2"></i>Cancel
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Help Section -->
+            <div class="card border-0 shadow-sm mt-4 rounded-4">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-start">
+                        <div class="bg-info bg-opacity-10 rounded-3 p-2 me-3">
+                            <i class="fas fa-lightbulb text-info"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-2">Editing Tips</h6>
+                            <ul class="list-unstyled mb-0 small text-muted">
+                                <li class="mb-1">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Use accurate dates for better family history tracking
+                                </li>
+                                <li class="mb-1">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Include birthdays, anniversaries, and other special events
+                                </li>
+                                <li class="mb-0">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    These dates help build your family timeline
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

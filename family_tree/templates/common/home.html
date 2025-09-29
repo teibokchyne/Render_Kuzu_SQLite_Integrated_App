@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Family Tree{% endblock %}
+
+{% block content %}
+<!-- Hero Section with Background -->
+<div class="container-fluid bg-gradient-primary py-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh;">
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="col-md-8 col-lg-6 col-xl-5">
+            <!-- Main Card -->
+            <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+                <!-- Card Header with Pattern -->
+                <div class="card-header bg-white border-0 py-4">
+                    <div class="text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-sitemap text-primary" style="font-size: 5rem; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));"></i>
+                        </div>
+                        <h3 class="card-title display-3 fw-bold text-primary">
+                            <span class="text-gradient">Family Tree</span>
+                        </h3>
+                        <div class="w-25 mx-auto border-top border-primary rounded-pill"></div>
+                    </div>
+                </div>
+                
+                <!-- Card Body -->
+                <div class="card-body text-center p-5 bg-light">
+                    <h2 class="h4 text-dark mb-3 fw-semibold">Welcome to Your Digital Family</h2>
+                    
+                    <!-- Action Buttons -->
+                    <div class="d-grid gap-3 mb-4">
+                        <a href="{{ url_for('common.login') }}" class="btn btn-primary btn-lg rounded-pill py-3 shadow-sm">
+                            <i class="fas fa-sign-in-alt me-2"></i>
+                            <span class="fw-semibold">Sign In to Continue</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Register Link -->
+                    <div class="text-center">
+                        <p class="text-muted mb-2">New to Family Tree?</p>
+                        <a href="{{ url_for('common.register') }}" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-semibold">
+                            <i class="fas fa-user-plus me-2"></i>Create Account
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Card Footer -->
+                <div class="card-footer bg-white border-0 py-3">
+                    <div class="row text-center">
+                        <div class="col-4">
+                            <div class="d-flex flex-column align-items-center">
+                                <i class="fas fa-users text-primary mb-1" style="font-size: 1.5rem;"></i>
+                                <small class="text-muted fw-semibold">Family</small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="d-flex flex-column align-items-center">
+                                <i class="fas fa-heart text-danger mb-1" style="font-size: 1.5rem;"></i>
+                                <small class="text-muted fw-semibold">Memories</small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="d-flex flex-column align-items-center">
+                                <i class="fas fa-share-alt text-success mb-1" style="font-size: 1.5rem;"></i>
+                                <small class="text-muted fw-semibold">Share</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Info Cards -->
+            <div class="row mt-4 g-3">
+                <div class="col-md-6">
+                    <div class="card border-0 bg-white bg-opacity-90 shadow-sm rounded-3">
+                        <div class="card-body text-center py-3">
+                            <i class="fas fa-shield-alt text-success mb-2" style="font-size: 1.8rem;"></i>
+                            <h6 class="card-title text-dark mb-1">Secure & Private</h6>
+                            <small class="text-muted">Your family data is protected</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card border-0 bg-white bg-opacity-90 shadow-sm rounded-3">
+                        <div class="card-body text-center py-3">
+                            <i class="fas fa-mobile-alt text-info mb-2" style="font-size: 1.8rem;"></i>
+                            <h6 class="card-title text-dark mb-1">Mobile Friendly</h6>
+                            <small class="text-muted">Access anywhere, anytime</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

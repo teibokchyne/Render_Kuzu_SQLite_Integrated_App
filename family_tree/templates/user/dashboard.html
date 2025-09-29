@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Family Tree{% endblock %}
+
+{% block content %}
+
+<!-- Main Dashboard Content -->
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="fw-bold text-dark mb-3">
+                <i class="fas fa-th-large me-2 text-primary"></i>Quick Actions
+            </h2>
+        </div>
+    </div>
+    
+    <div class="row g-4">
+        <!-- Relatives Card -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 border-0 shadow-sm dashboard-card">
+                <div class="card-body p-4 d-flex flex-column">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-primary bg-opacity-10 rounded-3 p-3 me-3">
+                            <i class="fas fa-users text-primary fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title fw-bold mb-1">Relatives</h5>
+                            <small class="text-muted">Family Members</small>
+                        </div>
+                    </div>
+                    <p class="card-text text-muted mb-4 flex-grow-1">
+                        Manage your family relationships and add new relatives to your family tree.
+                    </p>
+                    <a href="{{ url_for('user.display_relatives') }}" class="btn btn-primary rounded-pill fw-semibold">
+                        <i class="fas fa-plus me-2"></i>Manage Relationships
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Card -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 border-0 shadow-sm dashboard-card">
+                <div class="card-body p-4 d-flex flex-column">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-success bg-opacity-10 rounded-3 p-3 me-3">
+                            <i class="fas fa-user-circle text-success fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title fw-bold mb-1">Profile</h5>
+                            <small class="text-muted">Personal Info</small>
+                        </div>
+                    </div>
+                    <p class="card-text text-muted mb-4 flex-grow-1">
+                        View and update your personal profile information and settings.
+                    </p>
+                    <a href="{{ url_for('user.display_profile') }}" class="btn btn-success rounded-pill fw-semibold">
+                        <i class="fas fa-edit me-2"></i>Go to Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Addresses Card -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 border-0 shadow-sm dashboard-card">
+                <div class="card-body p-4 d-flex flex-column">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-info bg-opacity-10 rounded-3 p-3 me-3">
+                            <i class="fas fa-map-marker-alt text-info fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title fw-bold mb-1">Addresses</h5>
+                            <small class="text-muted">Location Info</small>
+                        </div>
+                    </div>
+                    <p class="card-text text-muted mb-4 flex-grow-1">
+                        Manage your permanent and current addresses for better family tracking.
+                    </p>
+                    <a href="{{ url_for('user.address') }}" class="btn btn-info rounded-pill fw-semibold">
+                        <i class="fas fa-map me-2"></i>Manage Addresses
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Important Dates Card -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 border-0 shadow-sm dashboard-card">
+                <div class="card-body p-4 d-flex flex-column">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-warning bg-opacity-10 rounded-3 p-3 me-3">
+                            <i class="fas fa-calendar-alt text-warning fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title fw-bold mb-1">Important Dates</h5>
+                            <small class="text-muted">Special Events</small>
+                        </div>
+                    </div>
+                    <p class="card-text text-muted mb-4 flex-grow-1">
+                        Keep track of birthdays, anniversaries, and other important family events.
+                    </p>
+                    <a href="{{ url_for('user.display_important_dates') }}" class="btn btn-warning rounded-pill fw-semibold">
+                        <i class="fas fa-calendar-plus me-2"></i>Manage Dates
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Details Card -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 border-0 shadow-sm dashboard-card">
+                <div class="card-body p-4 d-flex flex-column">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-danger bg-opacity-10 rounded-3 p-3 me-3">
+                            <i class="fas fa-phone text-danger fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title fw-bold mb-1">Contact Details</h5>
+                            <small class="text-muted">Communication</small>
+                        </div>
+                    </div>
+                    <p class="card-text text-muted mb-4 flex-grow-1">
+                        Manage your phone numbers, emails, and other contact information.
+                    </p>
+                    <a href="{{ url_for('user.display_contact_details') }}" class="btn btn-danger rounded-pill fw-semibold">
+                        <i class="fas fa-phone-alt me-2"></i>Manage Contacts
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Family Tree Card -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 border-0 shadow-sm dashboard-card">
+                <div class="card-body p-4 d-flex flex-column">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-gradient-primary bg-opacity-10 rounded-3 p-3 me-3">
+                            <i class="fas fa-sitemap text-primary fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title fw-bold mb-1">Family Tree</h5>
+                            <small class="text-muted">Visual Tree</small>
+                        </div>
+                    </div>
+                    <p class="card-text text-muted mb-4 flex-grow-1">
+                        View your complete family tree in a beautiful visual format.
+                    </p>
+                    <a href="#" class="btn btn-primary rounded-pill fw-semibold">
+                        <i class="fas fa-tree me-2"></i>View Tree
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
